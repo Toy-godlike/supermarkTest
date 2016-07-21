@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="SupermarketServiceImplService" targetNamespace="http://service/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://service/" version="1.0" xmlns:tns="http://service/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="saveDiscount" type="tns:saveDiscount"/>
+<xs:element name="saveDiscountResponse" type="tns:saveDiscountResponse"/>
+<xs:element name="saveOnSale" type="tns:saveOnSale"/>
+<xs:element name="saveOnSaleResponse" type="tns:saveOnSaleResponse"/>
+<xs:complexType name="saveDiscount">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:discount"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="discount">
+<xs:sequence>
+<xs:element minOccurs="0" name="beginDate" type="xs:dateTime"/>
+<xs:element name="d_num" type="xs:int"/>
+<xs:element name="disc" type="xs:float"/>
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="products" type="tns:products"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="products">
+<xs:sequence>
+<xs:element minOccurs="0" name="picture" type="xs:string"/>
+<xs:element minOccurs="0" name="pname" type="xs:string"/>
+<xs:element name="price" type="xs:double"/>
+<xs:element minOccurs="0" name="shapcode" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="saveDiscountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="saveOnSale">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:onSale"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="onSale">
+<xs:sequence>
+<xs:element minOccurs="0" name="area" type="tns:area"/>
+<xs:element minOccurs="0" name="products" type="tns:products"/>
+<xs:element minOccurs="0" name="rfid" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="area">
+<xs:sequence>
+<xs:element minOccurs="0" name="a_name" type="xs:string"/>
+<xs:element name="a_num" type="xs:int"/>
+<xs:element minOccurs="0" name="location" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="saveOnSaleResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="saveOnSale">
+    <wsdl:part element="tns:saveOnSale" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDiscountResponse">
+    <wsdl:part element="tns:saveDiscountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDiscount">
+    <wsdl:part element="tns:saveDiscount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveOnSaleResponse">
+    <wsdl:part element="tns:saveOnSaleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SupermarketService">
+    <wsdl:operation name="saveDiscount">
+      <wsdl:input message="tns:saveDiscount" name="saveDiscount">
+    </wsdl:input>
+      <wsdl:output message="tns:saveDiscountResponse" name="saveDiscountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveOnSale">
+      <wsdl:input message="tns:saveOnSale" name="saveOnSale">
+    </wsdl:input>
+      <wsdl:output message="tns:saveOnSaleResponse" name="saveOnSaleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SupermarketServiceImplServiceSoapBinding" type="tns:SupermarketService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="saveDiscount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="saveDiscount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="saveDiscountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveOnSale">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="saveOnSale">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="saveOnSaleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SupermarketServiceImplService">
+    <wsdl:port binding="tns:SupermarketServiceImplServiceSoapBinding" name="SupermarketServiceImplPort">
+      <soap:address location="http://139.129.28.167/productservice/supermarketws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
